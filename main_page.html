@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+        <title>My scratchboard page</title>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">My IMDK</a>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="container">
+
+            <div class="row">
+
+                <h2> Movies Part</h3>
+                </br>
+
+            </div>
+
+            {% for movie in movies %}
+                <div class="row">
+                    Movie Picture: <img src="{{(movie.url)}}">
+                    </br>
+                    Movie Name: {{ movie.name }}
+                    </br>
+                    Movie Year: {{ movie.year }}
+
+                    <div class="row">
+                        <form action="/postComment" method="POST">
+                            <textarea name="comment_movie" placeholder="Enter a comment" class="form-control"></textarea>
+                            <input name="movie_id" type="text" value= "{{ movie.id }}" hidden>
+                            <input type="submit" class="btn btn-success" value="Post comment">
+                        </form>
+                        <div class="row">
+                            {% for comment in comments %}
+                                {% if movie.id == comment.movie: %}
+                                    <div class="row">
+                                        Our Customer's Comments: {{ comment.content }}
+                                        </br>
+                                        <form action="/translate" method="POST">
+                                            <input name="translate_comment" type="text" value= "{{ comment.content }}" hidden>
+                                            <input name="tr_sp" type="submit" class="w3-button w3-block w3-red" value="en-es">
+                                            <input name="tr_ru" type="submit" class="w3-button w3-block w3-red" value="en-he">
+                                            {% if translated_text is not none %}
+                                                {{ translated_text }}
+                                                </br>
+                                            {% endif %}
+                                        </form>
+                                    </div>
+                                {% endif %}
+                                </br>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                </br>
+                <div class="container">
+                    <form action="voice" target="_blank" method="POST">
+                        <p><label for="myfile">Select a file:</label></p>
+                        <p><input type="file" id="myfile" name="myfile"></p>
+                        <button type="submit" class="w3-button w3-block w3-red">Upload</button>
+                    </form>
+                </div>
+                <hr style="height: 5px;
+                    background: teal;
+                    margin: 20px 0;
+                    box-shadow: 0px 0px 4px 2px rgba(204,204,204,1);">
+                </br>
+            {% endfor %}
+
+            <!--<div class="row">
+                <form action="." method="POST">
+                    <textarea name="contents" placeholder="Enter a comment" class="form-control"></textarea>
+                    <input type="submit" class="btn btn-success" value="Post comment">
+                </form>
+            </div>-->
+
+        </div>
+    </body>
+</html>
+
+
+
+
+
