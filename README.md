@@ -1,5 +1,5 @@
 # Speech_to_text
-Web page for Cloud Computing course using IBM cloud services such as speech to text, Natrual Language Understanding, Language Translation with Pythonanywhere as a free host and its storage and database services.
+Web page for Cloud Computing course using IBM cloud services such as speech to text, Natural Language Understanding, Language Translation with Pythonanywhere as a free host and its storage and database services.
 
 * Front: Jinja2
 * Web framework: Flask
